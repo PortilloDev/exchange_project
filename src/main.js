@@ -1,16 +1,21 @@
-import Vue from 'vue' //importa libreria del npm
-import App from './App.vue' //importa el componente App
-import '@/assets/css/tailwind.css' //importa el componente tailwind
+import Vue from 'vue'
+import App from './App.vue'
+import '@/assets/css/tailwind.css'
+import Chart from 'chart.js'
+import Chartick from 'vue-chartkick'
+import { VueSpinners } from '@saeris/vue-spinners'
 
 import router from '@/router'
-import { dollarFilter, percentFilter } from '@/filter'
+import { dollarFilter, percentFilter } from '@/filters'
 
-Vue.filter('dollar', dollarFilter) //nombre, función 
-Vue.filter('percent', percentFilter) //nombre, función 
+Vue.use(VueSpinners)
+Vue.use(Chartick.use(Chart))
+
+Vue.filter('dollar', dollarFilter)
+Vue.filter('percent', percentFilter)
 Vue.config.productionTip = false
 
-// instancia de Vue
 new Vue({
-    router,
-    render: (h) => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')
